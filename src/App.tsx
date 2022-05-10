@@ -10,8 +10,8 @@ export interface Language {
 export function App() {
 	const hoursAgo = getQuery('hours');
 
-	const [input, setInput] = useState<string>(
-		hoursAgo ? removeFromNow(hoursAgo) : '',
+	const [input, setInput] = useState(
+		hoursAgo ? removeFromNow(hoursAgo) : removeFromNow(),
 	);
 
 	const [language, setLanguage] = useState<string>('English');
@@ -52,8 +52,8 @@ export function App() {
 
 		parameters.set('hour', value);
 
-		const newRelativePathQuery
-      = location.pathname + '?' + parameters.toString();
+		const newRelativePathQuery = location.pathname + '?'
+      + parameters.toString();
 
 		history.pushState(null, '', newRelativePathQuery);
 	};
@@ -81,7 +81,7 @@ export function App() {
 				})}
 			</select>
 
-			<p>{input}</p>
+			<p>{input.toLocaleString()}</p>
 
 			<p className="text-xl text-gray-200">{languageData.body}</p>
 
