@@ -18,11 +18,14 @@ export function App() {
 		<main className="bg-slate-600 flex flex-col p-5 h-screen gap-4 text-2xl text-center">
 			<h1>How many Hours ago?</h1>
 			<select value={hoursAgo ?? ''} onInput={hoursOnInput}>
-				{Array.from({length: 25}, (_value, index) => (
-					<option key={index} value={index}>
-						{index}
-					</option>
-				))}
+				{Array.from(
+					{length: 25},
+					(_value, index) => (
+						<option key={index} value={index}>
+							{index}
+						</option>
+					),
+				)}
 			</select>
 
 			<p>{input}</p>

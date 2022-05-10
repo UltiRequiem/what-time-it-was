@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
 	plugins: [react()],
-	base: 'how-many-hours-since',
+	base: 'what-time-it-was',
 });
