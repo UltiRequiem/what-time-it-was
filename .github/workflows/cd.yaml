@@ -1,7 +1,6 @@
 name: Deploy to GH
 
-on:
-  [push]
+on: [push]
 
 jobs:
   deploy:
