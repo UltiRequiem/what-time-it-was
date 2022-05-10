@@ -1,21 +1,21 @@
 export function removeFromNow(hours: number | string) {
-  const now = new Date();
+	const now = new Date();
 
-  if (typeof hours === "string") {
-    hours = parseInt(hours, 10);
-  }
+	if (typeof hours === 'string') {
+		hours = Number.parseInt(hours, 10);
+	}
 
-  now.setHours(now.getHours() - hours);
+	now.setHours(now.getHours() - hours);
 
-  return now.toLocaleString();
+	return now.toLocaleString();
 }
 
 export function getQuery(query: string) {
-  const { searchParams } = getQuery.params;
+	const {searchParams} = getQuery.params;
 
-  const value = searchParams.get(query);
+	const value = searchParams.get(query);
 
-  return value;
+	return value;
 }
 
 getQuery.params = new URL(window.location.href);
