@@ -1,6 +1,6 @@
 import {timeZones} from '@ultirequiem/timezones';
 
-import {timeZone, removeItem} from './utils';
+import {removeItem, timeZone} from './utils';
 
 import {SwitchInput} from './types';
 
