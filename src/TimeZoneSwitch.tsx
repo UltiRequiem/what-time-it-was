@@ -10,12 +10,10 @@ export interface TimeZoneProps {
 
 const cleanTimezones = removeItem([...timeZones], timeZone);
 
+cleanTimezones.unshift(timeZone);
+
 export const TimeZoneSwitch = ({handler}: TimeZoneProps) => (
 	<select onInput={handler}>
-		<option value={timeZone} key={timeZone}>
-			{timeZone}
-		</option>
-
 		{cleanTimezones.map(timezone => (
 			<option key={timezone} value={timezone}>
 				{timezone}

@@ -8,11 +8,18 @@ hours ago it was?
 
 This site is for you!
 
-Includes utilities to calculate in different Time Zones.
+## Contributing
 
-## Adding Languages
+### Adding Languages
 
 Just edit `/public/lang.json` 🚀
+
+> Any language is welcome!
+
+### New Options
+
+Currently, it only has an option to calculate the time in another time zone, if
+you got an idea of a feature to add here, open a PR or an Issue!
 
 ## Deploy
 

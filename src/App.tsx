@@ -13,6 +13,7 @@ import {TimeZoneSwitch} from './TimeZoneSwitch';
 import {HoursInput} from './24HoursInput';
 
 import {Language, SwitchInput} from './types';
+import {Footer} from './footer';
 
 const hoursAgo = getQuery('hour');
 
@@ -27,6 +28,10 @@ export function App() {
 
 	const [languageList, setLanguageList] = useState<Array<Language['title']>>();
 	const [languageData, setLanguageData] = useState<Language>();
+
+	const [showTimeZone, setShowTimeZone] = useState(false);
+
+	const [hoursInput, setHoursInput] = useState('1');
 
 	async function fetchLanguages() {
 		const data = await fethText();
@@ -46,7 +51,10 @@ export function App() {
 	};
 
 	const hoursOnInput: SwitchInput = ({currentTarget: {value}}) => {
+		setHoursInput(value);
+
 		setInput(removeFromNow(value));
+
 		pushQuery('hour', value);
 	};
 
@@ -59,18 +67,41 @@ export function App() {
 	}
 
 	return (
-		<main className="bg-slate-600 flex flex-col p-5 h-screen gap-4 text-2xl text-center">
-			<h1 className="underline bold title-case text-purple-800">
+		<main className="bg-slate-600 flex flex-col p-5 gap-4 text-2xl text-center min-h-screen">
+			<h1 className="underline bold title-case text-4xl">
 				{languageData.title}
 			</h1>
-      Which Time Zone?
-			<TimeZoneSwitch handler={onTimeZoneInput} />
-			<p>{input.toLocaleString('en-US', {timeZone: hostTimeZone})}</p>
-      Timezone: {hostTimeZone}
+
 			<HoursInput handler={hoursOnInput} />
+
+			<p className="b-rounded bg-slate-400">
+        It was {input.toLocaleString('en-US', {timeZone: hostTimeZone})} on
+				{' '}
+				{hostTimeZone} {hoursInput} hour ago.
+			</p>
+
+			<label>
+				<input
+					className="mr-3"
+					type="checkbox"
+					onInput={() => {
+						setShowTimeZone(!showTimeZone);
+					}}
+				/>
+        Custom Timezone
+			</label>
+
+			{showTimeZone && (
+				<>
+					<TimeZoneSwitch handler={onTimeZoneInput} />
+				</>
+			)}
+
+			<p className="text-gray-200">{languageData.body}</p>
+
 			<LanguageSwitch handler={onLanguageInput} languageList={languageList} />
-			<p className="text-xl text-gray-200">{languageData.body}</p>
-			<footer className="text-cyan-500">Eliaz Bobadilla</footer>
+
+			<Footer />
 		</main>
 	);
 }
