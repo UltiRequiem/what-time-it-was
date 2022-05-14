@@ -10,6 +10,10 @@ This site is for you!
 
 Includes utilities to calculate in different Time Zones.
 
+## Adding Languages
+
+Just edit `/public/lang.json` 🚀
+
 ## Deploy
 
 ### GH Pages 🐱
