@@ -1,4 +1,4 @@
-import {FormEventHandler} from "react";
+import {FormEventHandler} from 'react';
 
 export interface Language {
 	lang: 'string';
@@ -6,6 +6,4 @@ export interface Language {
 	body: 'string';
 }
 
-
-
-export type SwitchInput = FormEventHandler<HTMLSelectElement>
+export type SwitchInput = FormEventHandler<HTMLSelectElement>;

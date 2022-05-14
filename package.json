@@ -28,7 +28,8 @@
   "xo": {
     "rules": {
       "import/extensions": "off",
-      "unicorn/filename-case": "off"
+      "unicorn/filename-case": "off",
+      "new-cap": "off"
     }
   }
 }

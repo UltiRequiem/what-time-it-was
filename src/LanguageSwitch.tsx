@@ -1,7 +1,7 @@
-import { SwitchInput } from "./types";
+import {SwitchInput} from './types';
 
 export interface LanguageSwitchProps {
-        handler: SwitchInput;
+	handler: SwitchInput;
 	languageList: string[];
 }
 
