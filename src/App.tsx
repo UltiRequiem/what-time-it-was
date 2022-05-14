@@ -1,11 +1,9 @@
 import {FormEventHandler, useEffect, useState} from 'react';
-import {getQuery, removeFromNow} from './utils';
+import {fethText, getQuery, removeFromNow} from './utils';
 
-export interface Language {
-	lang: 'string';
-	title: 'string';
-	body: 'string';
-}
+import {Language} from './types';
+import {LanguageSwitch} from './LanguageSwitch';
+import {HoursInput} from './24HoursInput';
 
 export function App() {
 	const hoursAgo = getQuery('hours');
@@ -14,15 +12,12 @@ export function App() {
 		hoursAgo ? removeFromNow(hoursAgo) : removeFromNow(),
 	);
 
-	const [language, setLanguage] = useState<string>('English');
+	const [language, setLanguage] = useState('English');
 	const [languageList, setLanguageList] = useState<Array<Language['title']>>();
 	const [languageData, setLanguageData] = useState<Language>();
 
 	async function fetchLanguages() {
-		const response = await fetch('./lang.json');
-
-		/* eslint @typescript-eslint/no-unsafe-assignment: off */
-		const data: Language[] = await response.json();
+		const data = await fethText();
 
 		setLanguageData(data.find(lang => lang.lang === language));
 
@@ -52,14 +47,13 @@ export function App() {
 
 		parameters.set('hour', value);
 
-		const newRelativePathQuery = location.pathname + '?'
-      + parameters.toString();
+		const newRelativePathQuery
+      = location.pathname + '?' + parameters.toString();
 
 		history.pushState(null, '', newRelativePathQuery);
 	};
 
-	if (!languageData) {
-		console.log(languageData);
+	if (!languageData || !languageList) {
 		return <p>Loading...</p>;
 	}
 
@@ -69,33 +63,13 @@ export function App() {
 				{languageData.title}
 			</h1>
 
-			<select onInput={hoursOnInput}>
-				{Array.from({length: 24}, (_value, index) => {
-					const value = index + 1;
-
-					return (
-						<option key={value} value={value}>
-							{value}
-						</option>
-					);
-				})}
-			</select>
-
 			<p>{input.toLocaleString()}</p>
 
+			<HoursInput handler={hoursOnInput}/>
+
+			<LanguageSwitch handler={onLanguageInput} languageList={languageList} />
+
 			<p className="text-xl text-gray-200">{languageData.body}</p>
-
-			<section>
-				<p>Language</p>
-
-				<select onInput={onLanguageInput}>
-					{languageList?.map(lang => (
-						<option key={lang} value={lang}>
-							{lang}
-						</option>
-					))}
-				</select>
-			</section>
 
 			<footer className="text-cyan-500">Eliaz Bobadilla</footer>
 		</main>

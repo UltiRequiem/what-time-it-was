@@ -1,3 +1,5 @@
+import {Language} from './types';
+
 export function removeFromNow(hours: number | string = 1) {
 	const now = new Date();
 
@@ -13,8 +15,6 @@ export function removeFromNow(hours: number | string = 1) {
 
 	now.setHours(now.getHours() - hours);
 
-	console.log(now);
-
 	return now;
 }
 
@@ -27,3 +27,12 @@ export function getQuery(query: string) {
 }
 
 getQuery.params = new URL(window.location.href);
+
+export async function fethText() {
+	const response = await fetch('./lang.json');
+
+	/* eslint @typescript-eslint/no-unsafe-assignment: off */
+	const data: Language[] = await response.json();
+
+	return data;
+}
