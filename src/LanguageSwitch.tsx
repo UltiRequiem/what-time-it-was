@@ -1,7 +1,7 @@
-import {FormEventHandler} from 'react';
+import {SwitchInput} from './types';
 
 export interface LanguageSwitchProps {
-	handler: FormEventHandler<HTMLSelectElement>;
+	handler: SwitchInput;
 	languageList: string[];
 }
 

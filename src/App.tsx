@@ -1,18 +1,29 @@
-import {FormEventHandler, useEffect, useState} from 'react';
-import {fethText, getQuery, pushQuery, removeFromNow} from './utils';
+import {useEffect, useState} from 'react';
 
-import {Language} from './types';
+import {
+	fethText,
+	getQuery,
+	pushQuery,
+	removeFromNow,
+	timeZone,
+} from './utils';
+
 import {LanguageSwitch} from './LanguageSwitch';
+import {TimeZoneSwitch} from './TimeZoneSwitch';
 import {HoursInput} from './24HoursInput';
 
-export function App() {
-	const hoursAgo = getQuery('hour');
+import {Language, SwitchInput} from './types';
 
+const hoursAgo = getQuery('hour');
+
+export function App() {
 	const [input, setInput] = useState(
 		hoursAgo ? removeFromNow(hoursAgo) : removeFromNow(),
 	);
 
 	const [language, setLanguage] = useState('English');
+
+	const [hostTimeZone, setHostTimeZone] = useState(timeZone);
 
 	const [languageList, setLanguageList] = useState<Array<Language['title']>>();
 	const [languageData, setLanguageData] = useState<Language>();
@@ -28,19 +39,19 @@ export function App() {
 		void fetchLanguages();
 	}, [language, setLanguage]);
 
-	const onLanguageInput: FormEventHandler<HTMLSelectElement> = event => {
-		const {value} = event.currentTarget;
-
+	const onLanguageInput: SwitchInput = ({currentTarget: {value}}) => {
 		setLanguage(value);
 
 		void fetchLanguages();
 	};
 
-	const hoursOnInput: FormEventHandler<HTMLSelectElement> = ({
-		currentTarget: {value},
-	}) => {
+	const hoursOnInput: SwitchInput = ({currentTarget: {value}}) => {
 		setInput(removeFromNow(value));
 		pushQuery('hour', value);
+	};
+
+	const onTimeZoneInput: SwitchInput = ({currentTarget: {value}}) => {
+		setHostTimeZone(value);
 	};
 
 	if (!languageData || !languageList) {
@@ -52,15 +63,13 @@ export function App() {
 			<h1 className="underline bold title-case text-purple-800">
 				{languageData.title}
 			</h1>
-
-			<p>{input.toLocaleString()}</p>
-
+      Which Time Zone?
+			<TimeZoneSwitch handler={onTimeZoneInput} />
+			<p>{input.toLocaleString('en-US', {timeZone: hostTimeZone})}</p>
+      Timezone: {hostTimeZone}
 			<HoursInput handler={hoursOnInput} />
-
 			<LanguageSwitch handler={onLanguageInput} languageList={languageList} />
-
 			<p className="text-xl text-gray-200">{languageData.body}</p>
-
 			<footer className="text-cyan-500">Eliaz Bobadilla</footer>
 		</main>
 	);

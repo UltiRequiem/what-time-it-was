@@ -4,6 +4,7 @@ specifiers:
   '@types/node': ^17.0.33
   '@types/react': ^18.0.0
   '@types/react-dom': ^18.0.0
+  '@ultirequiem/timezones': ^1.2.2
   '@vitejs/plugin-react': ^1.3.0
   autoprefixer: ^10.4.7
   postcss: ^8.4.13
@@ -22,6 +23,7 @@ devDependencies:
   '@types/node': 17.0.33
   '@types/react': 18.0.9
   '@types/react-dom': 18.0.3
+  '@ultirequiem/timezones': 1.2.2
   '@vitejs/plugin-react': 1.3.2
   autoprefixer: 10.4.7_postcss@8.4.13
   postcss: 8.4.13
@@ -291,6 +293,21 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@deno/shim-deno-test/0.3.2:
+    resolution: {integrity: sha512-STxWMnLuA0/bT0F41yKx6AbyzVVSjXYvgleFE4xit/m4aooMG/0Bs0MiQUe95EVS8DrzYmWbuCtdIlWymAdlsw==}
+    dev: true
+
+  /@deno/shim-deno/0.4.3:
+    resolution: {integrity: sha512-m5iXsq3Nvv1aJ1xwUQGnXXOztZ5UUF9dZje3l6EbX41zE5+MioK1NN+2+C3nlWWs9PvSFam4EbZVG3JUbLCeDg==}
+    dependencies:
+      '@deno/shim-deno-test': 0.3.2
+      which: 2.0.2
+    dev: true
+
+  /@deno/shim-prompts/0.1.0:
+    resolution: {integrity: sha512-EzQ+rDWlaRXt5opY6AFKCrXUoroE7xhbPp+xEP2cSJBdX0ttJtVwltp6zifiDFwLLdKNv3yJ+OQSkzS1vPUxHg==}
     dev: true
 
   /@eslint/eslintrc/1.2.3:
@@ -564,6 +581,15 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.23.0
       eslint-visitor-keys: 3.3.0
+    dev: true
+
+  /@ultirequiem/timezones/1.2.2:
+    resolution: {integrity: sha512-GpYyN0Gl/GX5h+3Dcup53nM08P0SxL8MD5K4tKLu09VAVGNcO9SBVVfxenhtUhT3SFZlZdMbMOXxxdvewOWM0A==}
+    hasBin: true
+    dependencies:
+      '@deno/shim-deno': 0.4.3
+      '@deno/shim-prompts': 0.1.0
+      fuse.js: 6.5.3
     dev: true
 
   /@vitejs/plugin-react/1.3.2:
@@ -1806,6 +1832,11 @@ packages:
 
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+    dev: true
+
+  /fuse.js/6.5.3:
+    resolution: {integrity: sha512-sA5etGE7yD/pOqivZRBvUBd/NaL2sjAu6QuSaFoe1H2BrJSkH/T/UXAJ8CdXdw7DvY3Hs8CXKYkDWX7RiP5KOg==}
+    engines: {node: '>=10'}
     dev: true
 
   /gensync/1.0.0-beta.2:

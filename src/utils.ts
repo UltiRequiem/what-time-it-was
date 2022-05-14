@@ -46,3 +46,15 @@ export function pushQuery(key: string, value: string) {
 
 	history.pushState(undefined, '', newRelativePathQuery);
 }
+
+export function removeItem<T>(array: T[], value: T): T[] {
+	const index = array.indexOf(value);
+
+	if (index > -1) {
+		array.splice(index, 1);
+	}
+
+	return array;
+}
+
+export const {timeZone} = Intl.DateTimeFormat().resolvedOptions();

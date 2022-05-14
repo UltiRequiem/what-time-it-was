@@ -1,8 +1,8 @@
-import {FormEventHandler} from 'react';
+import {SwitchInput} from './types';
 
 export interface HoursInputProps {
 	hours?: number;
-	handler: FormEventHandler<HTMLSelectElement>;
+	handler: SwitchInput;
 }
 
 export const HoursInput = ({handler, hours = 24}: HoursInputProps) => (
