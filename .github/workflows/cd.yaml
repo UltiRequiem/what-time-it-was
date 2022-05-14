@@ -5,6 +5,8 @@ on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      IS_GITHUB: true
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.1.0
