@@ -74,9 +74,8 @@ export function App() {
 
 			<HoursInput handler={hoursOnInput} />
 
-			<p className="b-rounded bg-slate-400">
-        It was {input.toLocaleString('en-US', {timeZone: hostTimeZone})} on
-				{' '}
+			<p className="b-rounded bg-slate-400 p-4">
+        It was {input.toLocaleString('en-US', {timeZone: hostTimeZone})} on{' '}
 				{hostTimeZone} {hoursInput} hour ago.
 			</p>
 
