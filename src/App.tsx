@@ -1,18 +1,19 @@
 import {FormEventHandler, useEffect, useState} from 'react';
-import {fethText, getQuery, removeFromNow} from './utils';
+import {fethText, getQuery, pushQuery, removeFromNow} from './utils';
 
 import {Language} from './types';
 import {LanguageSwitch} from './LanguageSwitch';
 import {HoursInput} from './24HoursInput';
 
 export function App() {
-	const hoursAgo = getQuery('hours');
+	const hoursAgo = getQuery('hour');
 
 	const [input, setInput] = useState(
 		hoursAgo ? removeFromNow(hoursAgo) : removeFromNow(),
 	);
 
 	const [language, setLanguage] = useState('English');
+
 	const [languageList, setLanguageList] = useState<Array<Language['title']>>();
 	const [languageData, setLanguageData] = useState<Language>();
 
@@ -20,13 +21,11 @@ export function App() {
 		const data = await fethText();
 
 		setLanguageData(data.find(lang => lang.lang === language));
-
 		setLanguageList(data.map(lang => lang.lang));
 	}
 
 	useEffect(() => {
-		/* eslint @typescript-eslint/no-floating-promises: off */
-		fetchLanguages();
+		void fetchLanguages();
 	}, [language, setLanguage]);
 
 	const onLanguageInput: FormEventHandler<HTMLSelectElement> = event => {
@@ -34,23 +33,14 @@ export function App() {
 
 		setLanguage(value);
 
-		/* eslint @typescript-eslint/no-floating-promises: off */
-		fetchLanguages();
+		void fetchLanguages();
 	};
 
-	const hoursOnInput: FormEventHandler<HTMLSelectElement> = event => {
-		const {value} = event.currentTarget;
-
+	const hoursOnInput: FormEventHandler<HTMLSelectElement> = ({
+		currentTarget: {value},
+	}) => {
 		setInput(removeFromNow(value));
-
-		const parameters = new URLSearchParams(location.search);
-
-		parameters.set('hour', value);
-
-		const newRelativePathQuery
-      = location.pathname + '?' + parameters.toString();
-
-		history.pushState(null, '', newRelativePathQuery);
+		pushQuery('hour', value);
 	};
 
 	if (!languageData || !languageList) {
@@ -65,7 +55,7 @@ export function App() {
 
 			<p>{input.toLocaleString()}</p>
 
-			<HoursInput handler={hoursOnInput}/>
+			<HoursInput handler={hoursOnInput} />
 
 			<LanguageSwitch handler={onLanguageInput} languageList={languageList} />
 

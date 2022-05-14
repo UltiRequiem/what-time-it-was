@@ -36,3 +36,13 @@ export async function fethText() {
 
 	return data;
 }
+
+export function pushQuery(key: string, value: string) {
+	const parameters = new URLSearchParams(location.search);
+
+	parameters.set(key, value);
+
+	const newRelativePathQuery = `${location.pathname}?${parameters.toString()}`;
+
+	history.pushState(undefined, '', newRelativePathQuery);
+}
