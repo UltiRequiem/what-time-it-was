@@ -31,7 +31,7 @@ export function App() {
 
 	const [showTimeZone, setShowTimeZone] = useState(false);
 
-	const [hoursInput, setHoursInput] = useState('1');
+	const [hoursInput, setHoursInput] = useState(hoursAgo ?? '1');
 
 	async function fetchLanguages() {
 		const data = await fethText();
@@ -90,11 +90,7 @@ export function App() {
         Custom Timezone
 			</label>
 
-			{showTimeZone && (
-				<>
-					<TimeZoneSwitch handler={onTimeZoneInput} />
-				</>
-			)}
+			{showTimeZone && <TimeZoneSwitch handler={onTimeZoneInput} />}
 
 			<p className="text-gray-200">{languageData.body}</p>
 
