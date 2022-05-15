@@ -90,11 +90,7 @@ export function App() {
         Custom Timezone
 			</label>
 
-			{showTimeZone && (
-				<>
-					<TimeZoneSwitch handler={onTimeZoneInput} />
-				</>
-			)}
+			{showTimeZone && <TimeZoneSwitch handler={onTimeZoneInput} />}
 
 			<p className="text-gray-200">{languageData.body}</p>
 
