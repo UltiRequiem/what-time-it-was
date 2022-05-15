@@ -31,7 +31,7 @@ export function App() {
 
 	const [showTimeZone, setShowTimeZone] = useState(false);
 
-	const [hoursInput, setHoursInput] = useState('1');
+	const [hoursInput, setHoursInput] = useState(hoursAgo ?? '1');
 
 	async function fetchLanguages() {
 		const data = await fethText();
