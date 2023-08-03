@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^4.6.3
     version: 4.6.4
   vite:
-    specifier: ^2.9.7
-    version: 2.9.8
+    specifier: ^2.9.16
+    version: 2.9.16
   xo:
     specifier: ^0.48.0
     version: 0.48.0(webpack@5.88.2)
@@ -3783,8 +3783,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@2.9.8:
-    resolution: {integrity: sha512-zsBGwn5UT3YS0NLSJ7hnR54+vUKfgzMUh/Z9CxF1YKEBVIe213+63jrFLmZphgGI5zXwQCSmqIdbPuE8NJywPw==}
+  /vite@2.9.16:
+    resolution: {integrity: sha512-X+6q8KPyeuBvTQV8AVSnKDvXoBMnTx8zxh54sOwmmuOdxkjMmEJXH2UEchA+vTMps1xw9vL64uwJOWryULg7nA==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
